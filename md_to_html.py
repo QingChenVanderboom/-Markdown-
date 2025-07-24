@@ -68,7 +68,7 @@ def markdown_to_html(md_content):
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['\\(', '\\)']],
+                inlineMath: [['\\\\(', '\\\\)']],
                 displayMath: [['$$', '$$']]
             },
             startup: {

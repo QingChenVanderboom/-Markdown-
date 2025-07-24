@@ -5,7 +5,6 @@
 !LICENSE
 !md_to_html.py
 !README.md
-!test_converter.py
 !test_markdown.md
 
 # 确保.gitignore本身被跟踪
