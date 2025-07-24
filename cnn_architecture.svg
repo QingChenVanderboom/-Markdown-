@@ -1,0 +1,142 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#45a049;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="convGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1976D2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="poolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9800;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F57C00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9C27B0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7B1FA2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">卷积神经网络(CNN)架构示意图</text>
+  
+  <!-- Input Layer -->
+  <rect x="50" y="100" width="60" height="80" fill="url(#inputGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="80" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">输入层</text>
+  <text x="80" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">224×224×3</text>
+  
+  <!-- Conv1 Layer -->
+  <rect x="150" y="90" width="70" height="100" fill="url(#convGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="185" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">卷积层1</text>
+  <text x="185" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">3×3 Conv</text>
+  <text x="185" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">224×224×32</text>
+  
+  <!-- Pool1 Layer -->
+  <rect x="250" y="110" width="60" height="60" fill="url(#poolGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="280" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">池化层1</text>
+  <text x="280" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">2×2 Max</text>
+  <text x="280" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">112×112×32</text>
+  
+  <!-- Conv2 Layer -->
+  <rect x="340" y="90" width="70" height="100" fill="url(#convGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="375" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">卷积层2</text>
+  <text x="375" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">3×3 Conv</text>
+  <text x="375" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">112×112×64</text>
+  
+  <!-- Pool2 Layer -->
+  <rect x="440" y="110" width="60" height="60" fill="url(#poolGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="470" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">池化层2</text>
+  <text x="470" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">2×2 Max</text>
+  <text x="470" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">56×56×64</text>
+  
+  <!-- Conv3 Layer -->
+  <rect x="530" y="90" width="70" height="100" fill="url(#convGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="565" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">卷积层3</text>
+  <text x="565" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">3×3 Conv</text>
+  <text x="565" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">56×56×128</text>
+  
+  <!-- Flatten -->
+  <rect x="630" y="120" width="50" height="40" fill="#607D8B" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="655" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">展平</text>
+  <text x="655" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">401408×1</text>
+  
+  <!-- FC Layer -->
+  <rect x="710" y="100" width="60" height="80" fill="url(#fcGrad)" stroke="#333" stroke-width="2" rx="5"/>
+  <text x="740" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">全连接</text>
+  <text x="740" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">输出层</text>
+  <text x="740" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">1000类</text>
+  
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Arrow connections -->
+  <line x1="110" y1="140" x2="145" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="220" y1="140" x2="245" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="310" y1="140" x2="335" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="410" y1="140" x2="435" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="500" y1="140" x2="525" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="600" y1="140" x2="625" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="680" y1="140" x2="705" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Feature maps visualization -->
+  <g transform="translate(50, 250)">
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">特征图尺寸变化:</text>
+    
+    <!-- Input feature map -->
+    <rect x="0" y="30" width="40" height="40" fill="#4CAF50" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="20" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">224²</text>
+    
+    <!-- Conv1 feature map -->
+    <rect x="80" y="30" width="40" height="40" fill="#2196F3" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="100" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">224²</text>
+    
+    <!-- Pool1 feature map -->
+    <rect x="160" y="35" width="30" height="30" fill="#FF9800" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="175" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">112²</text>
+    
+    <!-- Conv2 feature map -->
+    <rect x="230" y="35" width="30" height="30" fill="#2196F3" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="245" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">112²</text>
+    
+    <!-- Pool2 feature map -->
+    <rect x="300" y="40" width="20" height="20" fill="#FF9800" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="310" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">56²</text>
+    
+    <!-- Conv3 feature map -->
+    <rect x="360" y="40" width="20" height="20" fill="#2196F3" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="370" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">56²</text>
+    
+    <!-- Flatten -->
+    <rect x="420" y="45" width="10" height="10" fill="#607D8B" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="425" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">1D</text>
+    
+    <!-- FC output -->
+    <circle cx="480" cy="50" r="8" fill="#9C27B0" stroke="#333" stroke-width="1" opacity="0.7"/>
+    <text x="480" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">1000</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(550, 280)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">图例:</text>
+    
+    <rect x="0" y="10" width="15" height="15" fill="url(#inputGrad)" stroke="#333" stroke-width="1"/>
+    <text x="20" y="22" font-family="Arial, sans-serif" font-size="12" fill="#333">输入层</text>
+    
+    <rect x="0" y="30" width="15" height="15" fill="url(#convGrad)" stroke="#333" stroke-width="1"/>
+    <text x="20" y="42" font-family="Arial, sans-serif" font-size="12" fill="#333">卷积层</text>
+    
+    <rect x="0" y="50" width="15" height="15" fill="url(#poolGrad)" stroke="#333" stroke-width="1"/>
+    <text x="20" y="62" font-family="Arial, sans-serif" font-size="12" fill="#333">池化层</text>
+    
+    <rect x="0" y="70" width="15" height="15" fill="url(#fcGrad)" stroke="#333" stroke-width="1"/>
+    <text x="20" y="82" font-family="Arial, sans-serif" font-size="12" fill="#333">全连接层</text>
+  </g>
+</svg>

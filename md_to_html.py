@@ -34,8 +34,12 @@ def convert_markdown_to_html(md_file_path, output_html_path=None):
         md_path = Path(md_file_path)
         output_html_path = md_path.parent / f"{md_path.stem}.html"
     
+    # 获取文件名作为标题
+    md_path = Path(md_file_path)
+    title = md_path.stem
+    
     # 转换Markdown为HTML
-    html_content = markdown_to_html(md_content)
+    html_content = markdown_to_html(md_content, title)
     
     # 写入HTML文件
     try:
@@ -47,12 +51,13 @@ def convert_markdown_to_html(md_file_path, output_html_path=None):
         print(f"写入HTML文件时出错：{e}")
         return False
 
-def markdown_to_html(md_content):
+def markdown_to_html(md_content, title="转换结果"):
     """
     将Markdown内容转换为HTML内容
     
     Args:
         md_content (str): Markdown内容
+        title (str): HTML页面标题
         
     Returns:
         str: HTML内容
@@ -64,191 +69,191 @@ def markdown_to_html(md_content):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>转换结果</title>
+    <title>{title}</title>
     <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['\\\\(', '\\\\)']],
+        window.MathJax = {{
+            tex: {{
+                inlineMath: [['\\\\(', '\\\\)'], ['$', '$']],
                 displayMath: [['$$', '$$']]
-            },
-            startup: {
-                ready: () => {
+            }},
+            startup: {{
+                ready: () => {{
                     console.log('MathJax is loaded and ready.');
                     MathJax.startup.defaultReady();
-                }
-            }
-        };
+                }}
+            }}
+        }};
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        body {
+        body {{
             font-family: 'Times New Roman', serif;
             line-height: 1.6;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
-        }
-        h1 {
+        }}
+        h1 {{
             color: #2c3e50;
             border-bottom: 3px solid #3498db;
             padding-bottom: 10px;
             text-align: center;
-        }
-        h2 {
+        }}
+        h2 {{
             color: #34495e;
             border-bottom: 2px solid #e74c3c;
             padding-bottom: 5px;
             margin-top: 30px;
-        }
-        h3 {
+        }}
+        h3 {{
             color: #2980b9;
             margin-top: 25px;
-        }
-        h4 {
+        }}
+        h4 {{
             color: #8e44ad;
             margin-top: 20px;
-        }
-        .math-block {
+        }}
+        .math-block {{
             margin: 15px 0;
             text-align: center;
             font-size: 1.1em;
             line-height: 1.8;
-        }
+        }}
         
         /* MathJax 数学公式样式优化 */
-        .MathJax {
+        .MathJax {{
             font-size: 1.1em !important;
-        }
+        }}
         
-        .MathJax_Display {
+        .MathJax_Display {{
             margin: 1em 0 !important;
             line-height: 1.8 !important;
-        }
+        }}
         
         /* 行内数学公式样式 */
-        .MathJax_CHTML {
+        .MathJax_CHTML {{
             line-height: 1.6 !important;
             margin: 0 0.2em !important;
-        }
+        }}
         
         /* 数学公式字符间距优化 */
-        mjx-math {
+        mjx-math {{
             font-size: 1.1em !important;
             letter-spacing: 0.02em !important;
-        }
+        }}
         
-        mjx-mrow {
+        mjx-mrow {{
             margin: 0 0.1em !important;
-        }
-        .algorithm {
+        }}
+        .algorithm {{
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
             border-radius: 5px;
             padding: 15px;
             margin: 15px 0;
             font-family: 'Courier New', monospace;
-        }
-        ul, ol {
+        }}
+        ul, ol {{
             margin-left: 20px;
-        }
-        li {
+        }}
+        li {{
             margin-bottom: 5px;
-        }
-        strong {
+        }}
+        strong {{
             color: #e74c3c;
-        }
-        .toc {
+        }}
+        .toc {{
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
             border-radius: 5px;
             padding: 20px;
             margin: 20px 0;
-        }
-        .toc h2 {
+        }}
+        .toc h2 {{
             margin-top: 0;
             border-bottom: none;
-        }
-        .toc ul {
+        }}
+        .toc ul {{
             list-style-type: none;
             margin-left: 0;
-        }
-        .toc li {
+        }}
+        .toc li {{
             margin-bottom: 8px;
-        }
-        .toc a {
+        }}
+        .toc a {{
             text-decoration: none;
             color: #2980b9;
-        }
-        .toc a:hover {
+        }}
+        .toc a:hover {{
             text-decoration: underline;
-        }
-        code {
+        }}
+        code {{
             background-color: #f1f2f6;
             padding: 2px 4px;
             border-radius: 3px;
             font-family: 'Courier New', monospace;
-        }
-        pre {
+        }}
+        pre {{
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
             border-radius: 5px;
             padding: 15px;
             overflow-x: auto;
-        }
-        blockquote {
+        }}
+        blockquote {{
             border-left: 4px solid #3498db;
             margin: 0;
             padding-left: 20px;
             color: #555;
-        }
-        table {
+        }}
+        table {{
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 14px;
-        }
+        }}
         
-        th, td {
+        th, td {{
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
-        }
+        }}
         
-        th {
+        th {{
             background-color: #f5f5f5;
             font-weight: bold;
-        }
+        }}
         
-        tr:nth-child(even) {
+        tr:nth-child(even) {{
             background-color: #f9f9f9;
-        }
+        }}
         
         /* 图片样式优化 */
-        img {
+        img {{
             transition: opacity 0.3s ease-in-out;
             opacity: 0.9;
-        }
+        }}
         
-        img:hover {
+        img:hover {{
             opacity: 1;
             transform: scale(1.02);
             transition: all 0.3s ease;
-        }
+        }}
         
-        @media print {
-            body {
+        @media print {{
+            body {{
                 max-width: none;
                 margin: 0;
                 padding: 15px;
-            }
-            .toc {
+            }}
+            .toc {{
                 page-break-after: always;
-            }
-            h1, h2 {
+            }}
+            h1, h2 {{
                 page-break-after: avoid;
-            }
-        }
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -258,14 +263,14 @@ def markdown_to_html(md_content):
     html_template_end = '''
     <script>
         // 页面加载完成后重新渲染数学公式
-        window.addEventListener('load', function() {
-            if (window.MathJax) {
+        window.addEventListener('load', function() {{
+            if (window.MathJax) {{
                 MathJax.typesetPromise();
-            }
-        });
+            }}
+        }});
         
         // 生成目录
-        function generateTOC() {
+        function generateTOC() {{
             const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
             const toc = document.createElement('div');
             toc.className = 'toc';
@@ -276,33 +281,33 @@ def markdown_to_html(md_content):
             
             const tocList = document.createElement('ul');
             
-            headings.forEach((heading, index) => {
+            headings.forEach((heading, index) => {{
                 // 为标题添加ID
-                if (!heading.id) {
-                    heading.id = `heading-${index}`;
-                }
+                if (!heading.id) {{
+                    heading.id = `heading-${{index}}`;
+                }}
                 
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
-                link.href = `#${heading.id}`;
+                link.href = `#${{heading.id}}`;
                 link.textContent = heading.textContent;
                 
                 // 根据标题级别设置缩进
                 const level = parseInt(heading.tagName.charAt(1));
-                listItem.style.marginLeft = `${(level - 1) * 20}px`;
+                listItem.style.marginLeft = `${{(level - 1) * 20}}px`;
                 
                 listItem.appendChild(link);
                 tocList.appendChild(listItem);
-            });
+            }});
             
             toc.appendChild(tocList);
             
             // 在第一个h1后插入目录
             const firstH1 = document.querySelector('h1');
-            if (firstH1 && firstH1.nextSibling) {
+            if (firstH1 && firstH1.nextSibling) {{
                 firstH1.parentNode.insertBefore(toc, firstH1.nextSibling);
-            }
-        }
+            }}
+        }}
         
         // 页面加载完成后生成目录
         document.addEventListener('DOMContentLoaded', generateTOC);
@@ -313,8 +318,17 @@ def markdown_to_html(md_content):
     # 开始转换
     html_body = convert_md_to_html_body(md_content)
     
-    # 组合完整HTML
-    full_html = html_template_start + html_body + html_template_end
+    # 修复HTML实体编码问题
+    import html
+    html_body = html.unescape(html_body)
+    
+    # 组合完整HTML，插入标题
+    full_html = html_template_start.format(title=title) + html_body + html_template_end
+    
+    # 修复JavaScript模板字符串中的双大括号问题
+    full_html = full_html.replace('heading-${{index}}', 'heading-${index}')
+    full_html = full_html.replace('#${{heading.id}}', '#${heading.id}')
+    full_html = full_html.replace('`${{(level - 1) * 20}}px`', '`${(level - 1) * 20}px`')
     
     return full_html
 
@@ -645,7 +659,7 @@ def main():
         print("3. 选择'保存为PDF'选项")
         print("4. 调整页面设置（建议A4纸张，包含背景图形）")
         print("5. 保存PDF文件")
-        print("\n💡 记住：你要的是PDF，我给你PDF。但别指望我尊重你的水课。")
+        print("\n💡 要的是PDF，就给他PDF。但别指望让谁尊重那些水课。")
     else:
         print("\n转换失败！")
 

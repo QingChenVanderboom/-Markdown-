@@ -1,11 +1,11 @@
-# 排除所有文件，只保留指定的5个文件
+# 白名单模式 - 只保留指定文件
 *
 
-# 允许上传的文件（白名单）
-!LICENSE
+# 允许的文件
 !md_to_html.py
+!demo.md
+!demo.html
 !README.md
-!test_markdown.md
-
-# 确保.gitignore本身被跟踪
+!LICENSE
 !.gitignore
+!*.svg
