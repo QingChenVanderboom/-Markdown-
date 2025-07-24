@@ -1,84 +1,12 @@
-# Python缓存文件
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
+# 排除所有文件，只保留指定的5个文件
+*
 
-# 分发/打包
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# 允许上传的文件（白名单）
+!LICENSE
+!md_to_html.py
+!README.md
+!test_converter.py
+!test_markdown.md
 
-# PyInstaller
-*.manifest
-*.spec
-
-# 单元测试/覆盖率报告
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# 环境变量
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# 临时文件和输出文件
-*.html
-*.pdf
-temp_repo/
-README_local_backup.md
-
-# 测试文件（保留核心测试文件）
-test_output.html
-model_comparison_report.html
-董事长汇报讲稿.html
-
-# Vercel部署文件
-.vercel/
-
-# 项目特定的测试文件
-董事长汇报讲稿.md
-model_comparison_report.md
-ensemblenet_analysis.png
+# 确保.gitignore本身被跟踪
+!.gitignore
