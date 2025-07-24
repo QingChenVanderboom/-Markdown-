@@ -65,21 +65,28 @@ def markdown_to_html(md_content):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>转换结果</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['\\(', '\\)']],
+                inlineMath: [['\\\\(', '\\\\)']],
                 displayMath: [['$$', '$$']]
             },
             startup: {
                 ready: () => {
-                    console.log('MathJax is loaded and ready.');
+                    console.log('MathJax is loaded, but not yet initialized');
                     MathJax.startup.defaultReady();
+                    console.log('MathJax is initialized, and the initial typeset is queued');
                 }
+            },
+            chtml: {
+                scale: 1.1,
+                minScale: 0.8,
+                displayAlign: 'center',
+                displayIndent: '0'
             }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: 'Times New Roman', serif;
@@ -226,14 +233,24 @@ def markdown_to_html(md_content):
         
         /* 图片样式优化 */
         img {
-            transition: opacity 0.3s ease-in-out;
-            opacity: 0.9;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
         }
         
         img:hover {
-            opacity: 1;
             transform: scale(1.02);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* 图片加载优化 */
+        img[src=""] {
+            display: none;
         }
         
         @media print {
@@ -257,10 +274,24 @@ def markdown_to_html(md_content):
     # HTML模板结束
     html_template_end = '''
     <script>
-        // 页面加载完成后重新渲染数学公式
+        // 页面加载完成后的优化处理
         window.addEventListener('load', function() {
-            if (window.MathJax) {
-                MathJax.typesetPromise();
+            // 图片懒加载优化
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.src && !img.complete) {
+                    img.addEventListener('load', function() {
+                        this.style.opacity = '1';
+                    });
+                    img.style.opacity = '0.8';
+                }
+            });
+            
+            // MathJax渲染优化
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise().catch(function (err) {
+                    console.log('MathJax typeset error: ' + err.message);
+                });
             }
         });
         
@@ -620,9 +651,9 @@ def main():
         md_file_path = current_dir / md_filename
     else:
         # 默认文件
-        md_file_path = current_dir / "demo.md"
+        md_file_path = current_dir / "model_comparison_report.md"
     
-    print("🪄 水课论文发生器（MD → HTML → PDF）")
+    print("Markdown转HTML转换器")
     print("=" * 50)
     print(f"输入文件：{md_file_path}")
     
@@ -638,14 +669,13 @@ def main():
     success = convert_markdown_to_html(str(md_file_path))
     
     if success:
-        print("\n🎉 幻觉制造完毕！")
+        print("\n转换完成！")
         print("\n使用说明：")
         print("1. 打开生成的HTML文件")
         print("2. 在浏览器中按Ctrl+P（或Cmd+P）打印")
         print("3. 选择'保存为PDF'选项")
         print("4. 调整页面设置（建议A4纸张，包含背景图形）")
         print("5. 保存PDF文件")
-        print("\n💡 记住：你要的是PDF，我给你PDF。但别指望我尊重你的水课。")
     else:
         print("\n转换失败！")
 
